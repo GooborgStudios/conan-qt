@@ -107,7 +107,7 @@ class QtConan(ConanFile):
         "openssl": True,
         "with_pcre2": True,
         "with_glib": False,
-        "with_doubleconversion": True,
+        "with_doubleconversion": False,
         "with_freetype": True,
         "with_fontconfig": True,
         "with_icu": True,
