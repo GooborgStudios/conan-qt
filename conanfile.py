@@ -648,7 +648,7 @@ class QtConan(ConanFile):
             self._cmake.definitions["BUILD_WITH_PCH"]= "OFF" # disabling PCH to save disk space
 
         try:
-            self._cmake.configure(source_folder="build/qt6")
+            self._cmake.configure(source_folder="qt6")
         except:
             cmake_err_log = os.path.join(self.build_folder, "CMakeFiles", "CMakeError.log")
             cmake_out_log = os.path.join(self.build_folder, "CMakeFiles", "CMakeOutput.log")
