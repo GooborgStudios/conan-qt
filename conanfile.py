@@ -278,7 +278,6 @@ class QtConan(ConanFile):
 
     def requirements(self):
         self.requires("zlib/1.2.11")
-        self.requires("libb2/20190723")
         if self.options.openssl:
             self.requires("openssl/1.1.1m")
         if self.options.with_pcre2:
@@ -291,6 +290,7 @@ class QtConan(ConanFile):
             self.requires("glib/2.71.3")
         if self.options.with_doubleconversion and not self.options.multiconfiguration:
             self.requires("double-conversion/3.2.0")
+            self.requires("libb2/20190723")
         if self.options.get_safe("with_freetype", False) and not self.options.multiconfiguration:
             self.requires("freetype/2.11.1")
         if self.options.get_safe("with_fontconfig", False):
