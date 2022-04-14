@@ -58,7 +58,7 @@ class QtConan(ConanFile):
     url = "https://github.com/conan-io/conan-center-index"
     homepage = "https://www.qt.io"
     license = "LGPL-3.0"
-    settings = "os", "arch", "compiler", "build_type"
+    settings = "os", "arch", "arch_build", "compiler", "build_type"
 
     options = {
         "shared": [True, False],
@@ -616,6 +616,9 @@ class QtConan(ConanFile):
 
         if self.settings.os == "Macos":
             self._cmake.definitions["FEATURE_framework"] = "OFF"
+            if self.settings.arch == "x86_64" and self.settings.arch_build == "armv8":
+                # Don't treat compiling x86 on M1 as cross-compiling
+                self._cmake.definitions["CMAKE_CROSSCOMPILING"] = "OFF"
         elif self.settings.os == "Android":
             self._cmake.definitions["CMAKE_ANDROID_NATIVE_API_LEVEL"] = self.settings.os.api_level
             self._cmake.definitions["ANDROID_ABI"] =  {"armv7": "armeabi-v7a",
