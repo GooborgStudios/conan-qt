@@ -101,13 +101,13 @@ class QtConan(ConanFile):
     no_copy_source = True
 
     default_options = {
-        "shared": False,
+        "shared": True,
         "opengl": "desktop",
         "with_vulkan": False,
         "openssl": True,
         "with_pcre2": True,
         "with_glib": False,
-        "with_doubleconversion": False,
+        "with_doubleconversion": True,
         "with_freetype": True,
         "with_fontconfig": True,
         "with_icu": True,
@@ -134,6 +134,8 @@ class QtConan(ConanFile):
         "sysroot": None,
         "multiconfiguration": False,
         "disabled_features": "",
+
+        "doubleconversion:shared": True
     }
     default_options.update({module: False for module in _submodules})
 
@@ -290,7 +292,7 @@ class QtConan(ConanFile):
             self.requires("glib/2.71.3")
         if self.options.with_doubleconversion and not self.options.multiconfiguration:
             self.requires("double-conversion/3.2.0")
-            self.requires("libb2/20190723")
+            # self.requires("libb2/20190723")
         if self.options.get_safe("with_freetype", False) and not self.options.multiconfiguration:
             self.requires("freetype/2.11.1")
         if self.options.get_safe("with_fontconfig", False):
